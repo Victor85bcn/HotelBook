@@ -46,7 +46,7 @@ public class conexion {
             link = DriverManager.getConnection(this.url, this.user, this.pass); //Conecta con la BBDD utilizando url, user y pass.
             
         } catch (ClassNotFoundException | SQLException e) {
-            JOptionPane.showConfirmDialog(null, e);
+            JOptionPane.showConfirmDialog(null, e); //Control de excepciones
         }
         return link; //Retorna la conexión a la BBDD.
     }
