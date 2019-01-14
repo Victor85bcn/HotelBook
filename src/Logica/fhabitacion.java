@@ -79,9 +79,10 @@ public class fhabitacion {
         //DESC: Insertará una nueva habitación, devolviendo true si se ha realizado correctamente.
         
         sSQL = "insert into habitacion (numero,piso,descripcion,caracteristicas,precio_diario,estado,tipo_habitacion)" + 
-                     "values (?,?,?,?,?,?,?)";
+                     " values (?,?,?,?,?,?,?)";
         
         try { //Ejecuta la query y almacena los valores en su posición correspondiente.
+            
             PreparedStatement pst = cn.prepareStatement(sSQL);
             pst.setString(1, dts.getNumero());
             pst.setString(2, dts.getPiso());
@@ -112,11 +113,33 @@ public class fhabitacion {
         //OUTPUT: Devuelve un boolean true o false.
         //DESC: Editará una habitación, devolviendo true si se ha realizado correctamente.
         
+        sSQL = "update habitacion set numero=?,piso=?,descripcion=?,caracteristicas=?,precio_diario=?,estado=?,tipo_habitacion=?"+
+                     " where idhabitacion=?";
+        
         try {
             
+            PreparedStatement pst = cn.prepareStatement(sSQL);
+            pst.setString(1, dts.getNumero());
+            pst.setString(2, dts.getPiso());
+            pst.setString(3, dts.getDescripcion());
+            pst.setString(4, dts.getCaracteristicas());
+            pst.setDouble(5, dts.getPrecio_diario());
+            pst.setString(6, dts.getEstado());
+            pst.setString(7, dts.getTipo_habitacion());
+            pst.setInt(8, dts.getIdhabitacion());
+
             
-        } catch (Exception e) {
+            int n = pst.executeUpdate(); //Almacenará un 0 si no consigue ejecutar la query o 1 si pudo ejecutarla..
+            
+            if (n!=0)  {
+                return true; 
+            } else {
+                return false;
+            }   
+            
+        } catch (SQLException e) {
             JOptionPane.showConfirmDialog(null, e);
+            return false;
         }
     }
     
@@ -127,13 +150,29 @@ public class fhabitacion {
         //OUTPUT: Devuelve un boolean true o false.
         //DESC: Eliminará una habitación, devolviendo true si se ha realizado correctamente.
         
+        sSQL = "delete from habitacion where idhabitacion=?";
+        
         try {
             
+            PreparedStatement pst = cn.prepareStatement(sSQL);
+            pst.setInt(1, dts.getIdhabitacion());
+
             
-        } catch (Exception e) {
+            int n = pst.executeUpdate(); //Almacenará un 0 si no consigue ejecutar la query o 1 si pudo ejecutarla..
+            
+            if (n!=0)  {
+                return true; 
+            } else {
+                return false;
+            }               
+            
+        } catch (SQLException e) {
             JOptionPane.showConfirmDialog(null, e);
+            return false;
         }
     }
+    
+    
     
     
     
