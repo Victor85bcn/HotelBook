@@ -19,7 +19,7 @@ public class conexion {
     //ATRIBUTOS
     
     public String db = "bdBookinghotel"; //Declaración de la variable db con el nombre de la BBDD.
-    public String url = "jdbc:mysql://127.0.0.1/" + db; //Declaración de la variable url con el valor de la ruta de acceso (ip) + nombre de la BBDD.
+    public String url = "jdbc:mysql://127.0.0.1:3307/" + db; //Declaración de la variable url con el valor de la ruta de acceso (ip) + nombre de la BBDD.
     public String user = "root"; //Declaración de la variable user con el valor del usuario de la BBDD.
     public String pass = ""; //Declaración de la variables pass con el valor del password de la BBDD.
 
