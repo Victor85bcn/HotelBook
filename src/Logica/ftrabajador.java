@@ -210,5 +210,50 @@ public class ftrabajador {
         }
     }
     
+    
+    public DefaultTableModel login(String login, String password) {
+
+        //INPUT: String de login y password
+        //OUTPUT: Retorna una table.
+        //DESC: Función que comprobará que existe el login y password en la BBDD.
+        DefaultTableModel modelo;
+
+        String[] titulos = {"ID", "Nombre", "Apellido 1", "Apellido 2", "Acceso", "Login", "Password", "Estado"}; //Crea un array con los títulos de los campos.
+
+        String[] registro = new String[8]; //Crea un array que contendrálos valores de los campos.
+
+        totalregistros = 0;
+
+        modelo = new DefaultTableModel(null, titulos); //Inicializa la tabla añadiendo los titulos.
+
+        sSQL = "select p.idpersona,p.nombre,p.apellido1,p.apellido2,t.acceso,t.login,t.password,t.estado"
+                + " from persona p inner join trabajador t on p.idpersona=t.idpersona where t.login='" + login + "' and t.password='" + password + "' and t.estado='Activado'";
+
+        try {
+            Statement st = cn.createStatement();
+            ResultSet rs = st.executeQuery(sSQL); //Ejecuta la consulta a la BD.
+
+            while (rs.next()) { //Almacena los valores obtenidos del ResultSet en la posición adecuada.
+                registro[0] = rs.getString("idpersona");
+                registro[1] = rs.getString("nombre");
+                registro[2] = rs.getString("apellido1");
+                registro[3] = rs.getString("apellido2");
+                registro[4] = rs.getString("acceso");
+                registro[5] = rs.getString("login");
+                registro[6] = rs.getString("password");
+                registro[7] = rs.getString("estado");
+
+                totalregistros = totalregistros + 1;
+
+                modelo.addRow(registro); //Añade una fila por cada resultado obtenido.          
+            }
+            return modelo; //Retorna la tabla con los datos almacenados.
+
+        } catch (SQLException e) {
+            JOptionPane.showConfirmDialog(null, e);
+            return null;
+        }
+    }
+    
 
 }
