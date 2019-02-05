@@ -14,7 +14,7 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author Victor
  */
-public class frmproducto extends javax.swing.JFrame {
+public class frmproducto extends javax.swing.JInternalFrame {
 
     
     public frmproducto() {
@@ -138,7 +138,10 @@ public class frmproducto extends javax.swing.JFrame {
         btnguardar = new javax.swing.JButton();
         btncancelar = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setClosable(true);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setIconifiable(true);
+        setMaximizable(true);
 
         jLabel1.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
         jLabel1.setText("Producto");
@@ -305,7 +308,7 @@ public class frmproducto extends javax.swing.JFrame {
         btncancelar.setBackground(new java.awt.Color(51, 51, 51));
         btncancelar.setForeground(new java.awt.Color(255, 255, 255));
         btncancelar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Files/Eliminar.png"))); // NOI18N
-        btncancelar.setText("Eliminar");
+        btncancelar.setText("Cancelar");
         btncancelar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btncancelarActionPerformed(evt);
