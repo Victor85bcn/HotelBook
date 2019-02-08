@@ -11,7 +11,7 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author Victor
  */
-public class frmtrabajador extends javax.swing.JFrame {
+public class frmtrabajador extends javax.swing.JInternalFrame {
 
     /**
      * Creates new form frmcliente
@@ -185,7 +185,10 @@ public class frmtrabajador extends javax.swing.JFrame {
         btnsalir = new javax.swing.JButton();
         lbltotalregistros = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setClosable(true);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setIconifiable(true);
+        setMaximizable(true);
 
         jPanel1.setBackground(new java.awt.Color(255, 204, 51));
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Registro de trabajadores"));
