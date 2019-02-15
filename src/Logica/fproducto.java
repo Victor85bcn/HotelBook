@@ -1,4 +1,4 @@
-/* Clase que contiene las funciones a desarrollarpor la clase producto */
+/* Clase que contiene las funciones a desarrollar por la clase producto */
 
 package Logica;
 
