@@ -173,6 +173,49 @@ public class fhabitacion {
     }
     
     
+    public DefaultTableModel mostrarvista(String buscar) {
+        
+        //INPUT: String de búsqueda introducido por el usuario.
+        //OUTPUT: Retorna una table.
+        //DESC: Función que retornara los datos solicitados en formato table.
+        
+        DefaultTableModel modelo;
+        
+        String [] titulos = {"ID","Número","Piso","Descripción","Características","Precio","Estado","Tipo habitación"};
+        
+        String [] registro = new String [8];
+        
+        totalregistros = 0;
+        
+        modelo = new DefaultTableModel(null, titulos); //Inicializa la tabla añadiendo los titulos.
+        
+        sSQL = "select * from habitacion where piso like '%" + buscar + "%' and estado='Disponible' order by idhabitacion";
+        
+        try {
+            Statement st = cn.createStatement();
+            ResultSet rs = st.executeQuery(sSQL); //Ejecuta la consulta a la BD.
+            
+            while(rs.next()){ //Almacena los valores obtenidos del ResultSet en la posición adecuada.
+                registro [0] = rs.getString("idhabitacion");
+                registro [1] = rs.getString("numero");
+                registro [2] = rs.getString("piso");
+                registro [3] = rs.getString("descripcion");
+                registro [4] = rs.getString("caracteristicas");
+                registro [5] = rs.getString("precio_diario");
+                registro [6] = rs.getString("estado");
+                registro [7] = rs.getString("tipo_habitacion");
+                
+                totalregistros = totalregistros+1;
+                
+                modelo.addRow(registro); //Añade una fila por cada resultado obtenido.          
+            }          
+            return modelo; //Retorna la tabla con los datos almacenados.
+            
+        } catch (SQLException e) {
+            JOptionPane.showConfirmDialog(null, e);
+            return null;   
+        }
+    }
     
     
     
